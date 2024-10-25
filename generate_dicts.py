@@ -1,3 +1,5 @@
+from unidecode import unidecode
+
 """
 Depuis le fichier liste_mots.txt, on récupère tous les mots de 6,7,8,9,10 lettres.
 et on génère 5 fichiers textes contenant les mots en fonction de leur taille (un mot par ligne, séparé par un \n):

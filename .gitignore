@@ -1,3 +1,4 @@
+# Stuff to ignore
 **pycache**
 .env
 .idea/

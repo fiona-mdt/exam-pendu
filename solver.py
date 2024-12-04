@@ -31,9 +31,30 @@ def generate_valid_words(possible_words: list[str], letters_in_secret: list[tupl
 
 
 
-def generate_best_letters(possible_words:list, letters_not_played:list[str], letters_in_secret, letters_not_in_secret):
-    return "Ajoutez votre implémentation ici"
-
+def generate_best_letters(possible_words: list, letters_not_played: list[str], letters_in_secret: list[tuple[str, int]], letters_not_in_secret: list[str]) -> str:
+    """
+    Suggère la meilleure lettre à jouer basée sur les fréquences moyennes des lettres dans la liste des mots valides.
+    """
+    letter_freq = {letter: 0 for letter in letters_not_played}  # Initialisation d'un dictionnaire pour compter les occurrences des lettres non jouées
+    
+    for mot in possible_words:  # Parcourt des mots valides pour compter les occurrences des lettres non jouées
+        for lettre in letters_not_played:
+            letter_freq[lettre] += mot.count(lettre)
+    
+    # Calcul de la fréquence moyenne de chaque lettre
+    average_freq = { 
+        letter: letter_freq[letter] / len(possible_words)
+        for letter in letter_freq
+    } 
+    
+    best_letter = None # Recherche de la lettre qui a la fréquence moyenne la plus élevée
+    max_freq = 0 # Initialisation de max_freq à 0 pour comparer les fréquences
+    for letter in average_freq:
+        if average_freq[letter] > max_freq:
+            max_freq = average_freq[letter]
+            best_letter = letter
+    
+    return f"Essayez de jouer : {best_letter}"
 
 
 

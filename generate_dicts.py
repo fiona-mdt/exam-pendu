@@ -11,8 +11,23 @@ dico_10_lettres.txt
 On enlève les accents, les espaces, les tirets et les mots en double.
 """
 
-def lire_filtrer_mots(chemin_lexique, longueur):
-    return []
+def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
+    """
+    Lit les mots d'un fichier texte, les nettoie et filtre ceux qui ont une longueur spécifiée,
+    en excluant les mots contenant des caractères spéciaux comme ' , - ou des espaces.
+    """
+    lst_test = []  # Liste pour stocker les mots valides
+    
+    with open(chemin_lexique, "r", encoding="utf-8") as f:
+        for ligne in f:
+            mot = ligne.strip() # Suppression des espaces en début et fin de ligne
+            if "'" in mot or "-" in mot or " " in mot: # Exclusion des mots contenant les caractères définis comme indésirables
+                continue 
+            mot = unidecode(mot).upper() # Nettoyage des accents et mise en majuscules des mots
+            if len(mot) == longueur: # Filtrage par longueur
+                lst_test.append(mot) 
+    return set(lst_test) # Retour de la liste avec élimination des doublons
+
 
 
 def ecrire_liste_mots(liste_mots:list, longueur:int) -> None:
@@ -22,7 +37,6 @@ def ecrire_liste_mots(liste_mots:list, longueur:int) -> None:
 
     with open(chemin_dico_ecriture, 'w', encoding='utf-8') as file:
         file.writelines(f"{mot}\n" for mot in liste_mots)
-
 
 
 

@@ -6,14 +6,17 @@ def generate_valid_words(possible_words: list[str], letters_in_secret: list[tupl
     Génère une liste de mots valides à partir de la liste de mots potentiels, 
     en fonction des lettres déjà trouvées et des lettres exclues.
     """
+    if not possible_words:  # Vérification si la liste possible_words est vide
+        return []
+    
     mots_valides = []
     
-    lettres_exclues = set(letters_not_in_secret) # Création d'un ensemble pour letters_not_in_secret pour vérifier rapidement les lettres
+    lettres_exclues = set(letters_not_in_secret)  # Création d'un ensemble pour letters_not_in_secret pour vérifier rapidement les lettres
 
     for mot in possible_words:
         est_valide = True
         
-        for lettre in lettres_exclues: # Vérification du mot pour voir s'il ne contient pas de lettres exclues
+        for lettre in lettres_exclues:  # Vérification du mot pour voir s'il ne contient pas de lettres exclues
             if lettre in mot:
                 est_valide = False
                 break

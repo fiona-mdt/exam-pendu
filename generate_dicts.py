@@ -17,22 +17,25 @@ def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
     en excluant les mots contenant des caractères spéciaux comme ' , - ou des espaces.
     """
     lst_test = []  # Liste pour stocker les mots valides
-    
+
     with open(chemin_lexique, "r", encoding="utf-8") as f:
-        for ligne in f:
+        lignes = f.readlines()
+        if not lignes:
+            raise ValueError(f"Erreur : le fichier {chemin_lexique} est vide.") # Message d'erreur pour les fichiers vides
+        for ligne in lignes:
             mots = ligne.split()  # Séparation de la ligne en mots
             if mots:  # Vérification de la présence de mots dans la ligne
-                mot = mots[0]  # Prend le premier mot (les données après ne nous intéresse pas)
+                mot = mots[0]  # Prend le premier mot (les données après ne nous intéressent pas)
 
-                if "'" in mot or "-" in mot or " " in mot: # Exclusion des mots contenant les caractères définis comme indésirables
+                if "'" in mot or "-" in mot or " " in mot:  # Exclusion des mots contenant les caractères définis comme indésirables
                     continue
 
-                mot = unidecode(mot).upper() # Nettoyage des accents et mise en majuscules des mots
+                mot = unidecode(mot).upper()  # Nettoyage des accents et mise en majuscules des mots
 
-                if len(mot) == longueur: # Filtrage par longueur et ajout à la liste si validé
-                    lst_test.append(mot)   
+                if len(mot) == longueur:  # Filtrage par longueur et ajout à la liste si validé
+                    lst_test.append(mot)
 
-    return set(lst_test) # Retour de la liste avec élimination des doublons
+    return set(lst_test)  # Retour de la liste avec élimination des doublons
 
 
 

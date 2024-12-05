@@ -50,9 +50,10 @@ def generate_best_letters(possible_words: list, letters_not_played: list[str], l
         for letter in letter_freq
     } 
     
-    best_letter = None # Recherche de la lettre qui a la fréquence moyenne la plus élevée
-    max_freq = 0 # Initialisation de max_freq à 0 pour comparer les fréquences
-    for letter in average_freq:
+    # Recherche de la lettre qui a la fréquence moyenne la plus élevée
+    best_letter = None
+    max_freq = 0  # Initialisation de max_freq à 0 pour comparer les fréquences
+    for letter in average_freq:  # Comparaison des lettres
         if average_freq[letter] > max_freq:
             max_freq = average_freq[letter]
             best_letter = letter

@@ -59,3 +59,5 @@ def generate_best_letters(possible_words: list, letters_not_played: list[str], l
             best_letter = letter
     
     return f"Essayez de jouer : {best_letter}"
+
+# Commentaire Bonus
